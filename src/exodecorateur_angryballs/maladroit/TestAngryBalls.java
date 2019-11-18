@@ -76,8 +76,8 @@ bille1 = new RebondWrapper(bille1);
 bille1 = new PesanteurWrapper(bille1,new Vecteur(0,0.001));
 bille1 = new FrottementWrapper(bille1);
 billes.add(bille1);
-
-Bille bille2 = new BilleNormal(p2,rayon,v2,Color.RED);
+//ali
+/*Bille bille2 = new BilleNormal(p2,rayon,v2,Color.RED);
 bille2 = new RUWrapper(bille2);
 bille2 = new RebondWrapper(bille2);
 billes.add(bille2);
@@ -96,7 +96,7 @@ billes.add(bille4);
 Bille bille5 = new BilleNormal(p0,rayon,v0,Color.BLACK);
 bille5 = new NewtonWrapper(bille5);
 bille5 = new ArretWrapper(bille5);
-billes.add(bille5);
+billes.add(bille5);*/
 
 
 
