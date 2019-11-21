@@ -12,7 +12,8 @@ public abstract class ControleurEtatVueBillard{
 	public ControleurEtatVueBillard precedent;
 	public CadreAngryBalls cadreAngryBalls;
     long time=-1;
-    Bille bille = null;
+	int key = -1 ;
+	Vecteur point = Vecteur.VECTEURNUL;
     
     
 	public ControleurEtatVueBillard(ControleurEtatVueBillard suivant, ControleurEtatVueBillard precedent, CadreAngryBalls cadreAngryBalls) {
@@ -24,18 +25,6 @@ public abstract class ControleurEtatVueBillard{
 	public abstract void mousePressed(MouseEvent arg0);
 	public abstract void mouseReleased(MouseEvent arg0) ;
 	public abstract void mouseDragged(MouseEvent arg0);
-
-
-	public  double getX(){
-		return bille.getPosition().x;
-	}
-
-
-	public double  getY(){ return bille.getPosition().y; }
-
-	public  void setVitesse(Vecteur v){
-		bille.setVitesse(v);
-	}
 
 
 }

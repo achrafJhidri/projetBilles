@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Vector;
 
 public class BilleNormal implements Bille {
-    private Vecteur position;
+    public Vecteur position;
     private double rayon ;
     private Vecteur vitesse;
     private Vecteur acceleration;

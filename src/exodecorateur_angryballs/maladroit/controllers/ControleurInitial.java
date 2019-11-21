@@ -28,8 +28,8 @@ public class ControleurInitial extends ControleurEtatVueBillard{
 					(p.y - r <= event.getY() && event.getY() <= p.y + r))
 			{
 				time = System.currentTimeMillis();
-				bille = balles.get(i);
-
+				key = balles.get(i).getClef();
+				point = new Vecteur(event.getX(),event.getY());
 				return;
 			}
 		}
@@ -39,13 +39,14 @@ public class ControleurInitial extends ControleurEtatVueBillard{
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		bille = null ;
+		key = -1;
+		point = Vecteur.VECTEURNUL;
 		
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent event) {
-		if ( bille != null ) {
+		if ( key != -1 &&	point != Vecteur.VECTEURNUL ) {
 			this.cadreAngryBalls.currentController = this.suivant;
 		}
 	}

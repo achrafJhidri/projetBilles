@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.Vector;
 
 public interface Bille {
-
+    static final double EPSILON = 1.0E-6;
     Vecteur getPosition();
     double getRayon();
     Vecteur getAcceleration();

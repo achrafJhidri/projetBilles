@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
+import mesmaths.cinematique.Collisions;
 import mesmaths.geometrie.base.Vecteur;
 
 public class ControleurBilleAtrapee extends ControleurEtatVueBillard{
@@ -12,7 +13,6 @@ public class ControleurBilleAtrapee extends ControleurEtatVueBillard{
 	public ControleurBilleAtrapee(ControleurEtatVueBillard suivant, ControleurEtatVueBillard precedent,
 			CadreAngryBalls cadreAngryBalls) {
 		super(suivant, precedent, cadreAngryBalls);
-		// TODO Auto-generated constructor stub
 	}
 	
 	
@@ -26,18 +26,17 @@ public class ControleurBilleAtrapee extends ControleurEtatVueBillard{
 	public void mouseDragged(MouseEvent event) {
 
 
-			Vecteur d=new Vecteur(event.getX()-this.suivant.getX(),event.getY()-this.suivant.getY())	;
+			Vecteur d=new Vecteur(event.getX()-this.suivant.point.x,event.getY()-this.suivant.point.y)	;
 			time=System.currentTimeMillis();
 			long delta = time - this.suivant.time;
 
-			d.multiplie(1/(0.0000001+delta));
+			d.multiplie(1/(Bille.EPSILON+delta));
 
 
 			Vecteur v=d;
 
-			this.suivant  .setVitesse(v);
-
-
+			this.cadreAngryBalls.getBilles().get(suivant.key).setVitesse(v);
+			this.suivant.point=new Vecteur(event.getX(),event.getY());
 			this.cadreAngryBalls.currentController=this.suivant;
 
 
