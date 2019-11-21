@@ -73,16 +73,16 @@ billes.add(new BilleMvtNewtonArret(p4, rayon, v4,  Color.black));
 */
 Bille bille1 = new BilleNormal(p1,rayon,v1,Color.YELLOW);
 bille1 = new RebondWrapper(bille1);
-bille1 = new PesanteurWrapper(bille1,new Vecteur(0,0.001));
+//bille1 = new PesanteurWrapper(bille1,new Vecteur(0,0.001));
 bille1 = new FrottementWrapper(bille1);
 billes.add(bille1);
-//ali
-/*Bille bille2 = new BilleNormal(p2,rayon,v2,Color.RED);
-bille2 = new RUWrapper(bille2);
-bille2 = new RebondWrapper(bille2);
-billes.add(bille2);
 
-Bille bille3 = new BilleNormal(p3,rayon,v3,Color.green);
+//Bille bille2 = new BilleNormal(p2,rayon,v2,Color.RED);
+////bille2 = new RUWrapper(bille2);
+//bille2 = new RebondWrapper(bille2);
+//billes.add(bille2);
+
+/*Bille bille3 = new BilleNormal(p3,rayon,v3,Color.green);
 bille3 = new NewtonWrapper(bille3);
 bille3 = new FrottementWrapper(bille3);
 bille3 = new RebondWrapper(bille3);

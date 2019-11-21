@@ -68,6 +68,11 @@ public class BilleNormal implements Bille {
     }
 
     @Override
+    public void setVitesse(Vecteur v) {
+        this.vitesse=v;
+    }
+
+    @Override
     public void déplacer(double deltaT) {
         Cinematique.mouvementUniformémentAccéléré(position,vitesse,acceleration,deltaT);
     }

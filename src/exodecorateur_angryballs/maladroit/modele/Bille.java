@@ -13,6 +13,7 @@ public interface Bille {
     int getClef();
     double masse();
     Vecteur getVitesse();
+    void setVitesse(Vecteur v);
     void déplacer(double deltaT);
     void gestionAccélération(Vector<Bille> billes);
     boolean gestionCollisionBilleBille(Vector<Bille> billes);

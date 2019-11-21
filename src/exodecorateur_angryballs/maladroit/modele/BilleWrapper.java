@@ -42,6 +42,8 @@ public abstract class BilleWrapper implements Bille {
         return wrappedBille.getVitesse();
     }
 
+    public @Override void setVitesse(Vecteur v){ wrappedBille.setVitesse(v);}
+
     @Override
     public void déplacer(double deltaT) {
             wrappedBille.déplacer(deltaT);
