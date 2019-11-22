@@ -25,6 +25,10 @@ public abstract class BilleWrapper implements Bille {
     public Vecteur getAcceleration() {
         return wrappedBille.getAcceleration();
     }
+    @Override
+    public void setAcceleration(Vecteur a){
+        wrappedBille.setAcceleration(a);
+    }
 
     @Override
     public int getClef() {

@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Vector;
 
 public class BilleNormal implements Bille {
-    public Vecteur position;
+    private Vecteur position;
     private double rayon ;
     private Vecteur vitesse;
     private Vecteur acceleration;
@@ -45,6 +45,11 @@ public class BilleNormal implements Bille {
     @Override
     public Vecteur getAcceleration() {
         return acceleration;
+    }
+
+    @Override
+    public void setAcceleration(Vecteur a) {
+        this.acceleration=a;
     }
 
     @Override

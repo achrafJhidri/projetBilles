@@ -10,6 +10,7 @@ public interface Bille {
     Vecteur getPosition();
     double getRayon();
     Vecteur getAcceleration();
+    void setAcceleration(Vecteur a);
     int getClef();
     double masse();
     Vecteur getVitesse();
