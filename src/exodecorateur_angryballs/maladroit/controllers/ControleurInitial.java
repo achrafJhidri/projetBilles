@@ -21,19 +21,22 @@ public class ControleurInitial extends ControleurEtatVueBillard{
 	if(event.getButton()==MouseEvent.BUTTON1) {
 		Vector<Bille> balles = this.cadreAngryBalls.getBilles();
 		for (int i = 0; i < balles.size(); ++i) {
-			Vecteur p = balles.get(i).getPosition();
-			double r = balles.get(i).getRayon();
-
-			if ((p.x - r <= event.getX() && event.getX() <= p.x + r)  &&
-					(p.y - r <= event.getY() && event.getY() <= p.y + r))
+			Bille bille = balles.get(i);
+			if (isInsideBall(event,bille))
 			{
-				time = System.currentTimeMillis();
 				key = balles.get(i).getClef();
 				point = new Vecteur(event.getX(),event.getY());
 				return;
 			}
 		}
 		}
+	}
+
+	private boolean isInsideBall(MouseEvent event,Bille b) {
+		double rayon  =  b.getRayon();
+		Vecteur position = b.getPosition();
+		return (position.x - rayon <= event.getX() && event.getX() <= position.x +rayon)  &&
+				(position.y -rayon <= event.getY() && event.getY() <= position.y + rayon);
 	}
 
 

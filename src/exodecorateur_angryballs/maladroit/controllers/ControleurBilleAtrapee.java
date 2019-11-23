@@ -31,9 +31,14 @@ public class ControleurBilleAtrapee extends ControleurEtatVueBillard {
         Vecteur distance = new Vecteur(event.getX() - this.suivant.point.x, event.getY() - this.suivant.point.y);
         Bille bille =this.cadreAngryBalls.getBilles().get(this.suivant.key);
         distance.multiplie(1/bille.masse());
-        bille.setAcceleration(distance);
-        this.suivant.point.x= event.getX();
-        this.suivant.point.x= event.getY();
+
+
+      // getAcceleration().ajoute(distance);//
+
+       bille.setAcceleration(distance);
+
+        this.suivant.point.x= bille.getPosition().x;
+        this.suivant.point.y=  bille.getPosition().y;
 
 
         this.cadreAngryBalls.currentController = this.suivant;
