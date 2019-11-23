@@ -7,10 +7,10 @@ import exodecorateur_angryballs.maladroit.modele.Bille;
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
 import mesmaths.geometrie.base.Vecteur;
 
-public class ControleurInitial extends ControleurEtatVueBillard{
+public class InitialSC extends StateController {
 
-	public ControleurInitial(ControleurEtatVueBillard suivant, ControleurEtatVueBillard precedent,
-			CadreAngryBalls cadreAngryBalls) {
+	public InitialSC(StateController suivant, StateController precedent,
+					 CadreAngryBalls cadreAngryBalls) {
 		super(suivant, precedent, cadreAngryBalls);
 
 	}

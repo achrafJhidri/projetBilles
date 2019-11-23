@@ -7,9 +7,9 @@ import java.awt.event.MouseMotionListener;
 import java.util.Vector;
 
 
-import exodecorateur_angryballs.maladroit.controllers.ControleurBilleAtrapee;
-import exodecorateur_angryballs.maladroit.controllers.ControleurEtatVueBillard;
-import exodecorateur_angryballs.maladroit.controllers.ControleurInitial;
+import exodecorateur_angryballs.maladroit.controllers.FinalSC;
+import exodecorateur_angryballs.maladroit.controllers.StateController;
+import exodecorateur_angryballs.maladroit.controllers.InitialSC;
 import exodecorateur_angryballs.maladroit.modele.Bille;
 import outilsvues.EcouteurTerminaison;
 
@@ -26,9 +26,9 @@ public class CadreAngryBalls extends Frame implements VueBillard, MouseListener,
     public Button lancerBilles, arrêterBilles;
     public Panel haut, centre, bas;
 
-    public ControleurEtatVueBillard currentController;
-    public ControleurInitial initial;
-    public ControleurBilleAtrapee attrapee;
+    public StateController currentController;
+    public InitialSC initial;
+    public FinalSC attrapee;
 
     public EcouteurTerminaison ecouteurTerminaison;
 
@@ -62,8 +62,8 @@ public class CadreAngryBalls extends Frame implements VueBillard, MouseListener,
         this.bas.add(this.arrêterBilles);
 
 
-        initial = new ControleurInitial(null, null, this);
-        attrapee = new ControleurBilleAtrapee(initial, null, this);
+        initial = new InitialSC(null, null, this);
+        attrapee = new FinalSC(initial, null, this);
         initial.suivant = attrapee;
         currentController = initial;
 

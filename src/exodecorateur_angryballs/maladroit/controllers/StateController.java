@@ -2,21 +2,20 @@ package exodecorateur_angryballs.maladroit.controllers;
 
 import java.awt.event.MouseEvent;
 
-import exodecorateur_angryballs.maladroit.modele.Bille;
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
 import mesmaths.geometrie.base.Vecteur;
 
-public abstract class ControleurEtatVueBillard{
+public abstract class StateController {
 	
-	public ControleurEtatVueBillard suivant;
-	public ControleurEtatVueBillard precedent;
+	public StateController suivant;
+	public StateController precedent;
 	public CadreAngryBalls cadreAngryBalls;
     long time=-1;
 	int key = -1 ;
 	Vecteur point = Vecteur.VECTEURNUL;
     
     
-	public ControleurEtatVueBillard(ControleurEtatVueBillard suivant, ControleurEtatVueBillard precedent, CadreAngryBalls cadreAngryBalls) {
+	public StateController(StateController suivant, StateController precedent, CadreAngryBalls cadreAngryBalls) {
 		super();
 		this.suivant = suivant;
 		this.precedent = precedent;
