@@ -16,7 +16,7 @@ import java.util.Vector;
  * */
 public class Billard extends Canvas
 {
-Vector<Bille> billes;
+    public Vector<Bille> billes;
     public Billard(Vector<Bille> billes)
     {
 this.billes = billes;

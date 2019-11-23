@@ -6,13 +6,15 @@ import java.awt.*;
 import java.util.Vector;
 
 public interface Bille {
-
+    static final double EPSILON = 1.0E-6;
     Vecteur getPosition();
     double getRayon();
     Vecteur getAcceleration();
+    void setAcceleration(Vecteur a);
     int getClef();
     double masse();
     Vecteur getVitesse();
+    void setVitesse(Vecteur v);
     void déplacer(double deltaT);
     void gestionAccélération(Vector<Bille> billes);
     boolean gestionCollisionBilleBille(Vector<Bille> billes);

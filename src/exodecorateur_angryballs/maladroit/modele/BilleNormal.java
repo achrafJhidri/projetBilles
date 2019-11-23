@@ -48,6 +48,11 @@ public class BilleNormal implements Bille {
     }
 
     @Override
+    public void setAcceleration(Vecteur a) {
+        this.acceleration=a;
+    }
+
+    @Override
     public int getClef() {
         return cle;
     }
@@ -65,6 +70,11 @@ public class BilleNormal implements Bille {
     @Override
     public Vecteur getVitesse() {
         return vitesse;
+    }
+
+    @Override
+    public void setVitesse(Vecteur v) {
+        this.vitesse=v;
     }
 
     @Override

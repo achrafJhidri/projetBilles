@@ -25,6 +25,10 @@ public abstract class BilleWrapper implements Bille {
     public Vecteur getAcceleration() {
         return wrappedBille.getAcceleration();
     }
+    @Override
+    public void setAcceleration(Vecteur a){
+        wrappedBille.setAcceleration(a);
+    }
 
     @Override
     public int getClef() {
@@ -41,6 +45,8 @@ public abstract class BilleWrapper implements Bille {
     public Vecteur getVitesse() {
         return wrappedBille.getVitesse();
     }
+
+    public @Override void setVitesse(Vecteur v){ wrappedBille.setVitesse(v);}
 
     @Override
     public void déplacer(double deltaT) {
