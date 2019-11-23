@@ -28,18 +28,12 @@ public class ControleurBilleAtrapee extends ControleurEtatVueBillard {
     public void mouseDragged(MouseEvent event) {
 
 
-        Vecteur distance = new Vecteur(event.getX() - this.suivant.getX(), event.getY() - this.suivant.getY());
-//        time = System.currentTimeMillis();
-//        long delta = time - this.suivant.time;
-//        distance.multiplie(1 / (0.0000001 + delta));
-//        Vecteur vf = distance;
-//       Vecteur  Deltav = vf.difference(this.suivant.bille.getVitesse());
-//        Deltav.multiplie(1 / (0.0000001 + delta));
-
-
-        distance.multiplie(1/this.suivant.bille.masse());
-        System.out.println(distance);
-        this.suivant.bille.setAcceleration(distance);
+        Vecteur distance = new Vecteur(event.getX() - this.suivant.point.x, event.getY() - this.suivant.point.y);
+        Bille bille =this.cadreAngryBalls.getBilles().get(this.suivant.key);
+        distance.multiplie(1/bille.masse());
+        bille.setAcceleration(distance);
+        this.suivant.point.x= event.getX();
+        this.suivant.point.x= event.getY();
 
 
         this.cadreAngryBalls.currentController = this.suivant;
