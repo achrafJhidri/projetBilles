@@ -3,6 +3,7 @@ package exodecorateur_angryballs.maladroit.controllers;
 import java.awt.event.MouseEvent;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
+import exodecorateur_angryballs.maladroit.modele.BillePilotee;
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -26,15 +27,20 @@ public class FinalSC extends StateController {
     public void mouseDragged(MouseEvent event) {
 
 
-        Vecteur distance = new Vecteur(event.getX() - this.suivant.point.x, event.getY() - this.suivant.point.y);
-        Bille bille =this.cadreAngryBalls.getBilles().get(this.suivant.key);
-        distance.multiplie(1/bille.masse());
-        bille.setAcceleration(distance);
-        this.suivant.point.x= bille.getPosition().x;
-        this.suivant.point.y=  bille.getPosition().y;
+        Vecteur distance = new Vecteur(event.getX() - this.suivant.bille.getPosition().x, event.getY() - this.suivant.bille.getPosition().y);
 
 
-        this.cadreAngryBalls.currentController = this.suivant;
+                distance.multiplie(1/this.suivant.bille.masse());
+                BillePilotee b = new BillePilotee(this.suivant.bille,distance);
+
+
+                this.cadreAngryBalls.getBilles().remove(this.suivant.bille);
+                this.suivant.bille=b;
+                this.cadreAngryBalls.getBilles().add(b);
+
+                this.cadreAngryBalls.currentController = this.suivant;
+                return;
+
 
 
     }

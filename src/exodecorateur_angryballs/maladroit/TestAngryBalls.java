@@ -73,7 +73,7 @@ billes.add(new BilleMvtNewtonArret(p4, rayon, v4,  Color.black));
 */
 Bille bille1 = new BilleNormal(p1,rayon,v1,Color.YELLOW);
 bille1 = new RebondWrapper(bille1);
-bille1 = new PesanteurWrapper(bille1,new Vecteur(0,0.001));
+//bille1 = new PesanteurWrapper(bille1,new Vecteur(0,0.001));
 bille1 = new FrottementWrapper(bille1);
 billes.add(bille1);
 

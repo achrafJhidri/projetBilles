@@ -20,6 +20,7 @@ public interface Bille {
     boolean gestionCollisionBilleBille(Vector<Bille> billes);
     void collisionContour(double abscisseCoinHautGauche,double ordonnéeCoinHautGauche,double largeur,double hauteur);
     void dessine(Graphics g);
+    Bille getWrappedBille();
     @Override
     String toString();
 }

@@ -113,4 +113,9 @@ public class BilleNormal implements Bille {
         g.setColor(Color.CYAN);
         g.drawOval(xMin, yMin, width, height);
     }
+
+    @Override
+    public Bille getWrappedBille() {
+        return null;
+    }
 }

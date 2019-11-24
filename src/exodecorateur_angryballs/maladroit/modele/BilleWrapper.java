@@ -73,4 +73,8 @@ public abstract class BilleWrapper implements Bille {
     public void dessine(Graphics g) {
             wrappedBille.dessine(g);
     }
+    @Override
+    public Bille getWrappedBille(){
+        return wrappedBille;
+    };
 }
