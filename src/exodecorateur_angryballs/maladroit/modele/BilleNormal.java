@@ -14,7 +14,7 @@ public class BilleNormal implements Bille {
     private Vecteur vitesse;
     private Vecteur acceleration;
     private int cle;
-    private Color couleur;
+    private Color couleur; // a changer
 
 
     private static int nextkey = 0 ;
@@ -89,7 +89,7 @@ public class BilleNormal implements Bille {
 
     @Override
     public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
-        return OutilsBille.gestionCollisionBilleBille(this,billes);
+        return OutilsBille2.getInstance().gestionCollisionBilleBille(this,billes);
     }
 
     @Override

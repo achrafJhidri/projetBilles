@@ -13,10 +13,14 @@ public class BillePilotee extends BilleWrapper {
         this.force = force;
     }
 
-
+    public void setForce(Vecteur f){
+        force = f ;
+    }
     @Override
     public void gestionAccélération(Vector<Bille> billes) {
         super.gestionAccélération(billes);
+
+        //getAcceleration().ajoute(force);
         setAcceleration(force);
 
 

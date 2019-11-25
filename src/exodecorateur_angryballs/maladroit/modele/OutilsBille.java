@@ -15,7 +15,7 @@ import mesmaths.mecanique.MecaniquePoint;
  *  
  *  */
 
-public class OutilsBille
+public class OutilsBille //
 {
 /**
  * @param billes est la liste de TOUTES les billes en mouvement

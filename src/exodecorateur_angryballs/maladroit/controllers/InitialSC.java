@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 import exodecorateur_angryballs.maladroit.modele.Bille;
+import exodecorateur_angryballs.maladroit.modele.BillePilotee;
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -23,11 +24,25 @@ public class InitialSC extends StateController {
             for (int i = 0; i < balles.size(); ++i) {
                 Bille bille = balles.get(i);
                 if (isInsideBall(event, bille)) {
-                    this.bille = balles.get(i);
+                    this.bille = new BillePilotee(bille, Vecteur.VECTEURNUL);
+                    this.cadreAngryBalls.getBilles().remove(bille);
+                    this.cadreAngryBalls.getBilles().add(this.bille);
                     return;
                 }
             }
         }
+    }
+
+    /**
+     * indique si le vecteur @param p est dans le cercle (c , rayon)
+     *
+     * @param c
+     * @param rayon
+     * @param p
+     * @return
+     */
+    public static boolean appartient(Vecteur c, double rayon, Vecteur p) {
+        return false;
     }
 
     private boolean isInsideBall(MouseEvent event, Bille b) {
@@ -41,16 +56,11 @@ public class InitialSC extends StateController {
     @Override
     public void mouseReleased(MouseEvent arg0) {
         if (bille != null) {
-
-                    Bille nextBille = this.bille.getWrappedBille();
-
-                    this.cadreAngryBalls.getBilles().remove(this.bille);
-                    this.cadreAngryBalls.getBilles().add(nextBille);
-                    this.bille = null;
-
-                    return;
-
-
+            Bille nextBille = this.bille.getWrappedBille();
+            this.cadreAngryBalls.getBilles().remove(this.bille);
+            this.cadreAngryBalls.getBilles().add(nextBille);
+            this.bille = null;
+            return;
         }
 
 

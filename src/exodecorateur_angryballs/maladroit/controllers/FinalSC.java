@@ -30,17 +30,17 @@ public class FinalSC extends StateController {
         Vecteur distance = new Vecteur(event.getX() - this.suivant.bille.getPosition().x, event.getY() - this.suivant.bille.getPosition().y);
 
 
-                distance.multiplie(1/this.suivant.bille.masse());
-                BillePilotee b = new BillePilotee(this.suivant.bille,distance);
+        distance.multiplie(1 / this.suivant.bille.masse()); // ok
+
+     //   BillePilotee b = new BillePilotee(this.suivant.bille, distance); // a faire danns initial
 
 
-                this.cadreAngryBalls.getBilles().remove(this.suivant.bille);
-                this.suivant.bille=b;
-                this.cadreAngryBalls.getBilles().add(b);
+      //  this.cadreAngryBalls.getBilles().remove(this.suivant.bille);
+        this.suivant.bille.setForce(distance);
+      //  this.cadreAngryBalls.getBilles().add(b);
 
-                this.cadreAngryBalls.currentController = this.suivant;
-                return;
-
+        this.cadreAngryBalls.currentController = this.suivant;
+        return;
 
 
     }
