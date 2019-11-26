@@ -12,10 +12,8 @@ public abstract class StateController {
 	public StateController suivant;
 	public StateController precedent;
 	public CadreAngryBalls cadreAngryBalls; // liste billes
-
-	int key = -1 ;
 	BillePilotee bille  = null;
-	Vecteur point = Vecteur.VECTEURNUL;
+
     
     
 	public StateController(StateController suivant, StateController precedent, CadreAngryBalls cadreAngryBalls) {

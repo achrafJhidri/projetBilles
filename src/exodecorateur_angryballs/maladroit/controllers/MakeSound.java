@@ -62,16 +62,30 @@ public class MakeSound  implements Observateur, Runnable{
             System.exit(1);
         }
 
-        FloatControl pan = (FloatControl) sourceLine.getControl(Type.PAN);
-        double m= ((x-472)/472);
-        pan.setValue( (float)m);
-
-        FloatControl volume = (FloatControl) sourceLine.getControl(Type.VOLUME);
-        volume.setValue(intensity);
-
+//        FloatControl pan = (FloatControl) sourceLine.getControl(Type.PAN);
+//        double m= ((x-472)/472);
+//        pan.setValue( (float)m);
+//
+        FloatControl volume = (FloatControl) sourceLine.getControl(Type.MASTER_GAIN);
 
 
 
+        volume.setValue((20f * (float) Math.log10(intensity)));
+        System.out.println("intensity="+intensity);
+
+
+      /*  public float getVolume() {
+        	  FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        	  return (float) Math.pow(10f, gainControl.getValue() / 20f);
+        	}
+
+        	public void setVolume(float volume) {
+        	  if (volume < 0f || volume > 1f)
+        	    throw new IllegalArgumentException("Volume not valid: " + volume);
+        	  FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        	  gainControl.setValue(20f * (float) Math.log10(volume));
+        	}
+           */
         sourceLine.start();
 
         //boolean isPan = sourceLine.isControlSupported(Type.PAN);

@@ -2,7 +2,7 @@ package exodecorateur_angryballs.maladroit.modele;
 
 import mesmaths.geometrie.base.Vecteur;
 
-import java.awt.*;
+
 import java.util.Vector;
 
 public abstract class BilleWrapper implements Bille {
@@ -34,6 +34,8 @@ public abstract class BilleWrapper implements Bille {
     public int getClef() {
         return wrappedBille.getClef();
     }
+    @Override
+    public Color getCouleur(){ return wrappedBille.getCouleur();    }
 
     @Override
     public double masse() {
@@ -70,8 +72,8 @@ public abstract class BilleWrapper implements Bille {
 
 
     @Override
-    public void dessine(Graphics g) {
-            wrappedBille.dessine(g);
+    public void dessine(Dessinateur dessinateur) {
+            wrappedBille.dessine(dessinateur);
     }
     @Override
     public Bille getWrappedBille(){

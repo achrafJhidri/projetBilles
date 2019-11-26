@@ -8,6 +8,7 @@ import java.util.Vector;
 
 
 import exodecorateur_angryballs.maladroit.controllers.FinalSC;
+import exodecorateur_angryballs.maladroit.controllers.Interupteur;
 import exodecorateur_angryballs.maladroit.controllers.StateController;
 import exodecorateur_angryballs.maladroit.controllers.InitialSC;
 import exodecorateur_angryballs.maladroit.modele.Bille;
@@ -23,7 +24,7 @@ import outilsvues.Outils;
 public class CadreAngryBalls extends Frame implements VueBillard, MouseListener, MouseMotionListener {
     public TextField présentation;
     public Billard billard;
-    public Button lancerBilles, arrêterBilles;
+    public MyButton lancerBilles, arrêterBilles;
     public Panel haut, centre, bas;
 
     public StateController currentController;
@@ -56,10 +57,10 @@ public class CadreAngryBalls extends Frame implements VueBillard, MouseListener,
         this.billard = new Billard(billes);
         this.add(this.billard);
 
-        this.lancerBilles = new Button("lancer les billes");
-        this.bas.add(this.lancerBilles);
-        this.arrêterBilles = new Button("arrêter les billes");
-        this.bas.add(this.arrêterBilles);
+        this.lancerBilles = new MyButton("lancer les billes", Interupteur.LANCER);
+        this.bas.add(this.lancerBilles.button);
+        this.arrêterBilles = new MyButton("arrêter les billes",Interupteur.ARRETER);
+        this.bas.add(this.arrêterBilles.button);
 
 
         initial = new InitialSC(null, null, this);

@@ -9,7 +9,7 @@ public abstract class Observable {
     List<Observateur> observateurs = new ArrayList<Observateur>();
 
 
-    public void notify(Observable observable,Object o ){
+    public void notify(Object o ){
         for(Observateur observateur : observateurs){
             observateur.update(this,o);
         }

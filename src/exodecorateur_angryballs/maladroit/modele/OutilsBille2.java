@@ -91,7 +91,7 @@ public class OutilsBille2 extends Observable
                     billeCourante.getPosition(), billeCourante.getRayon(), billeCourante.getVitesse(), billeCourante.masse(),inout)) {
 
                 Collision collision = new Collision(inout[0],cetteBille.getPosition());
-                this.notify(this,collision);
+                this.notify(collision);
                 return true;
             }
         }

@@ -1,11 +1,9 @@
-package exodecorateur_angryballs.maladroit.modele;
+    package exodecorateur_angryballs.maladroit.modele;
 
 import mesmaths.cinematique.Cinematique;
 import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
-import java.awt.*;
-import java.util.Collection;
 import java.util.Vector;
 
 public class BilleNormal implements Bille {
@@ -14,13 +12,13 @@ public class BilleNormal implements Bille {
     private Vecteur vitesse;
     private Vecteur acceleration;
     private int cle;
-    private Color couleur; // a changer
+    private Color couleur;
 
 
     private static int nextkey = 0 ;
     private final static double ro = 1;
 
-    protected BilleNormal(Vecteur position, double rayon, Vecteur vitesse,Vecteur acceleration, Color couleur) {
+    protected BilleNormal(Vecteur position, double rayon, Vecteur vitesse,Vecteur acceleration,Color couleur) {
         this.position = position;
         this.rayon = rayon;
         this.vitesse = vitesse;
@@ -98,20 +96,9 @@ public class BilleNormal implements Bille {
     }
 
     @Override
-    public void dessine(Graphics g) {
+    public void dessine(Dessinateur dessinateur) {
 
-        int width, height;
-        int xMin, yMin;
-
-        xMin = (int)Math.round(position.x-rayon);
-        yMin = (int)Math.round(position.y-rayon);
-
-        width = height = 2*(int)Math.round(rayon);
-
-        g.setColor(couleur);
-        g.fillOval( xMin, yMin, width, height);
-        g.setColor(Color.CYAN);
-        g.drawOval(xMin, yMin, width, height);
+            dessinateur.visite(this);
     }
 
     @Override

@@ -1,10 +1,11 @@
 package exodecorateur_angryballs.maladroit;
 
-import java.awt.Color;
+
 import java.io.File;
 import java.util.Vector;
 
 import exodecorateur_angryballs.maladroit.controllers.MakeSound;
+import exodecorateur_angryballs.maladroit.controllers.MyAnimation;
 import exodecorateur_angryballs.maladroit.modele.*;
 import mesmaths.geometrie.base.Vecteur;
 
@@ -89,19 +90,20 @@ billes.add(new              BilleMvtNewtonFrottementRebond(p2, rayon, v2, Color.
 billes.add(new              BilleMvtRUPasseMurailles(p3, rayon, v3, Color.cyan));
 billes.add(new BilleMvtNewtonArret(p4, rayon, v4,  Color.black));
 */
-    Bille bille1 = new BilleNormal(p1,rayon,v1,Color.YELLOW);
+    Bille bille1 = new BilleNormal(p1,rayon,v1,Color.RED);
     bille1 = new RebondWrapper(bille1);
     billes.add(bille1);
 
-    Bille bille2 = new BilleNormal(p2,35,v2,Color.blue);
+    Bille bille2 = new BilleNormal(p2,rayon,v2,Color.BLUE);
     bille2 = new RebondWrapper(bille2);
+    bille2 = new NewtonWrapper(bille2);
     billes.add(bille2);
-
+/*
     Bille bille3 = new BilleNormal(p3,rayon,v3,Color.red);
     bille3 = new RebondWrapper(bille3);
-    bille3 = new NewtonWrapper(bille3);
-    billes.add(bille3);
 
+    billes.add(bille3);
+*/
 
 //---------------------- ici finit la partie à changer -------------------------------------------------------------
 
@@ -114,15 +116,15 @@ System.out.println("billes = " + billes);
 AnimationBilles animationBilles = new AnimationBilles(billes, cadre);
 
 //----------------------- mise en place des écouteurs de boutons qui permettent de contrôler (un peu...) l'application -----------------
-
-EcouteurBoutonLancer écouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
-EcouteurBoutonArreter écouteurBoutonArrêter = new EcouteurBoutonArreter(animationBilles); 
+    MyAnimation monAnimation = new MyAnimation(animationBilles);
+//EcouteurBoutonLancer écouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
+//EcouteurBoutonArreter écouteurBoutonArrêter = new EcouteurBoutonArreter(animationBilles);
 
 //------------------------- activation des écouteurs des boutons et ça tourne tout seul ------------------------------
 
 
-cadre.lancerBilles.addActionListener(écouteurBoutonLancer);             // maladroit : à changer
-cadre.arrêterBilles.addActionListener(écouteurBoutonArrêter);           // maladroit : à changer
+cadre.lancerBilles.addObservateur(monAnimation);             // maladroit : à changer
+cadre.arrêterBilles.addObservateur(monAnimation);           // maladroit : à changer
 
 
 

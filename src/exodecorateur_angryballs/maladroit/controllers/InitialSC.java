@@ -23,7 +23,9 @@ public class InitialSC extends StateController {
             Vector<Bille> balles = this.cadreAngryBalls.getBilles();
             for (int i = 0; i < balles.size(); ++i) {
                 Bille bille = balles.get(i);
-                if (isInsideBall(event, bille)) {
+                Vecteur p = bille.getPosition();
+                double r = bille.getRayon();
+                if (appartient(p,r,new Vecteur(event.getX(),event.getY()))) {
                     this.bille = new BillePilotee(bille, Vecteur.VECTEURNUL);
                     this.cadreAngryBalls.getBilles().remove(bille);
                     this.cadreAngryBalls.getBilles().add(this.bille);
@@ -33,24 +35,14 @@ public class InitialSC extends StateController {
         }
     }
 
-    /**
-     * indique si le vecteur @param p est dans le cercle (c , rayon)
-     *
-     * @param c
-     * @param rayon
-     * @param p
-     * @return
-     */
     public static boolean appartient(Vecteur c, double rayon, Vecteur p) {
+        Vecteur d=c.difference(p);
+
+        if (Math.abs(d.x)<=rayon && Math.abs(d.y)<=rayon)
+            return true;
         return false;
     }
 
-    private boolean isInsideBall(MouseEvent event, Bille b) {
-        double rayon = b.getRayon();
-        Vecteur position = b.getPosition();
-        return (position.x - rayon <= event.getX() && event.getX() <= position.x + rayon) &&
-                (position.y - rayon <= event.getY() && event.getY() <= position.y + rayon);
-    }
 
 
     @Override
