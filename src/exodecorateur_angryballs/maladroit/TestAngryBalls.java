@@ -94,12 +94,11 @@ billes.add(new BilleMvtNewtonArret(p4, rayon, v4,  Color.black));
     bille1 = new RebondWrapper(bille1);
     billes.add(bille1);
 
-    Bille bille2 = new BilleNormal(p2,rayon,v2,Color.BLUE);
+  /*  Bille bille2 = new BilleNormal(p2,rayon,v2,Color.BLUE);
     bille2 = new RebondWrapper(bille2);
     bille2 = new NewtonWrapper(bille2);
     billes.add(bille2);
-/*
-    Bille bille3 = new BilleNormal(p3,rayon,v3,Color.red);
+    Bille bille3 = new BilleNormal(p3,rayon,v3,Color.RED);
     bille3 = new RebondWrapper(bille3);
 
     billes.add(bille3);

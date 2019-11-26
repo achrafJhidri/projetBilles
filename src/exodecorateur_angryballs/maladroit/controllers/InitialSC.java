@@ -34,6 +34,12 @@ public class InitialSC extends StateController {
             }
         }
     }
+    private boolean isInsideBall(MouseEvent event, Bille b) {
+        double rayon = b.getRayon();
+        Vecteur position = b.getPosition();
+        return (position.x - rayon <= event.getX() && event.getX() <= position.x + rayon) &&
+                (position.y - rayon <= event.getY() && event.getY() <= position.y + rayon);
+    }
 
     public static boolean appartient(Vecteur c, double rayon, Vecteur p) {
         Vecteur d=c.difference(p);

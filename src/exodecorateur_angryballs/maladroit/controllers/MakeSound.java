@@ -3,6 +3,7 @@ package exodecorateur_angryballs.maladroit.controllers;
 
 import exodecorateur_angryballs.maladroit.modele.Collision;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -34,7 +35,7 @@ public class MakeSound  implements Observateur, Runnable{
     }
 
 
-    public void playSound(float intensity,double x){
+    public void playSound(float intensity,double x)  {
 
 
 
@@ -61,15 +62,14 @@ public class MakeSound  implements Observateur, Runnable{
             e.printStackTrace();
             System.exit(1);
         }
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+        int demiLargeur = screenSize.width/2;
 
 //        FloatControl pan = (FloatControl) sourceLine.getControl(Type.PAN);
-//        double m= ((x-472)/472);
+//        double m= ((x-demiLargeur)/demiLargeur);
 //        pan.setValue( (float)m);
-//
         FloatControl volume = (FloatControl) sourceLine.getControl(Type.MASTER_GAIN);
-
-
-
         volume.setValue((20f * (float) Math.log10(intensity)));
         System.out.println("intensity="+intensity);
 
@@ -107,7 +107,6 @@ public class MakeSound  implements Observateur, Runnable{
 
         sourceLine.drain();
         sourceLine.close();
-
     }
 
     @Override
