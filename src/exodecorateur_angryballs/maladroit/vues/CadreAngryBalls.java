@@ -8,10 +8,10 @@ import java.util.Vector;
 
 
 import exodecorateur_angryballs.maladroit.controllers.FinalSC;
-import exodecorateur_angryballs.maladroit.controllers.Interupteur;
+import exodecorateur_angryballs.maladroit.Interupteur;
 import exodecorateur_angryballs.maladroit.controllers.StateController;
 import exodecorateur_angryballs.maladroit.controllers.InitialSC;
-import exodecorateur_angryballs.maladroit.modele.Bille;
+import exodecorateur_angryballs.maladroit.modele.balls.Bille;
 import outilsvues.EcouteurTerminaison;
 
 import outilsvues.Outils;
@@ -63,8 +63,8 @@ public class CadreAngryBalls extends Frame implements VueBillard, MouseListener,
         this.bas.add(this.arrêterBilles.button);
 
 
-        initial = new InitialSC(null, null, this);
-        attrapee = new FinalSC(initial, null, this);
+        initial = new InitialSC(null,  this);
+        attrapee = new FinalSC(initial,  this);
         initial.suivant = attrapee;
         currentController = initial;
 

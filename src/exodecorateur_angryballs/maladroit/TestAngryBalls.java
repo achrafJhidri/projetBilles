@@ -4,9 +4,13 @@ package exodecorateur_angryballs.maladroit;
 import java.io.File;
 import java.util.Vector;
 
-import exodecorateur_angryballs.maladroit.controllers.MakeSound;
-import exodecorateur_angryballs.maladroit.controllers.MyAnimation;
-import exodecorateur_angryballs.maladroit.modele.*;
+import exodecorateur_angryballs.maladroit.vues.MakeSound;
+import exodecorateur_angryballs.maladroit.modele.balls.Bille;
+import exodecorateur_angryballs.maladroit.modele.balls.BilleNormal;
+import exodecorateur_angryballs.maladroit.modele.balls.RebondWrapper;
+import exodecorateur_angryballs.maladroit.modele.outilsModele.Collisions2;
+import exodecorateur_angryballs.maladroit.modele.outilsModele.Color;
+import exodecorateur_angryballs.maladroit.modele.outilsModele.OutilsBille2;
 import mesmaths.geometrie.base.Vecteur;
 
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
@@ -28,18 +32,16 @@ public static void main(String[] args)
 
     File racine = new File("");
     File ici = new File(racine.getAbsoluteFile(),File.separatorChar+"assets");
-    String strFilename = ici.getAbsolutePath()+File.separatorChar+"choc.wav";
+    String billebille = ici.getAbsolutePath()+File.separatorChar+"chocBilleBille.wav";
+    String billeMur = ici.getAbsolutePath()+File.separatorChar+"chocBilleMur.wav";
 
-    try {
+    MakeSound ms = new MakeSound(new File(billebille),new File(billeMur));
 
-        MakeSound ms = new MakeSound(new File(strFilename));
-        OutilsBille2 outilsBille2 = OutilsBille2.getInstance();
-        outilsBille2.addObservateur(ms);
-    }catch (Exception e){
+    OutilsBille2 outilsBille2 = OutilsBille2.getInstance();
+    outilsBille2.addObservateur(ms);
 
-        e.printStackTrace();
-        System.exit(1);
-    }
+    Collisions2 collision2 = Collisions2.getInstance();
+    collision2.addObservateur(ms);
 //------------------- création de la liste (pour l'instant vide) des billes -----------------------
 
 Vector<Bille> billes = new Vector<Bille>();
@@ -90,20 +92,32 @@ billes.add(new              BilleMvtNewtonFrottementRebond(p2, rayon, v2, Color.
 billes.add(new              BilleMvtRUPasseMurailles(p3, rayon, v3, Color.cyan));
 billes.add(new BilleMvtNewtonArret(p4, rayon, v4,  Color.black));
 */
-    Bille bille1 = new BilleNormal(p1,rayon,v1,Color.RED);
-    bille1 = new RebondWrapper(bille1);
-    billes.add(bille1);
 
-  /*  Bille bille2 = new BilleNormal(p2,rayon,v2,Color.BLUE);
+
+    Bille bille2 = new BilleNormal(p2,rayon,v2, Color.BLUE);
     bille2 = new RebondWrapper(bille2);
-    bille2 = new NewtonWrapper(bille2);
+
     billes.add(bille2);
-    Bille bille3 = new BilleNormal(p3,rayon,v3,Color.RED);
+
+
+    Bille bille3 = new BilleNormal(p3,rayon,v3,Color.DARK);
     bille3 = new RebondWrapper(bille3);
 
     billes.add(bille3);
-*/
 
+//    Bille bille4 = new BilleNormal(p4,rayon,v4,Color.YELLOW);
+//    bille4 = new RebondWrapper(bille4);
+//    bille4 = new NewtonWrapper(bille4);
+//    billes.add(bille4);
+//
+//    Bille bille5 = new BilleNormal(p0,rayon,v0,Color.GREEN);
+//    bille5 = new RebondWrapper(bille5);
+//    bille5 = new NewtonWrapper(bille5);
+//    billes.add(bille5);
+
+
+
+ /**/
 //---------------------- ici finit la partie à changer -------------------------------------------------------------
 
 

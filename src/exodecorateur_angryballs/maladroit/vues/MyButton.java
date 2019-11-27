@@ -1,6 +1,6 @@
 package exodecorateur_angryballs.maladroit.vues;
 
-import exodecorateur_angryballs.maladroit.controllers.Interupteur;
+import exodecorateur_angryballs.maladroit.Interupteur;
 import exodecorateur_angryballs.maladroit.controllers.Observable;
 
 import java.awt.*;

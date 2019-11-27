@@ -1,8 +1,6 @@
 package exodecorateur_angryballs.maladroit.vues;
 
-import exodecorateur_angryballs.maladroit.modele.Bille;
-import exodecorateur_angryballs.maladroit.modele.DessinAwt;
-import exodecorateur_angryballs.maladroit.modele.Dessinateur;
+import exodecorateur_angryballs.maladroit.modele.balls.Bille;
 
 
 import java.awt.Canvas;
