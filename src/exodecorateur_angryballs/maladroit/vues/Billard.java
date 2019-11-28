@@ -17,7 +17,7 @@ import java.util.Vector;
  * */
 public class Billard extends Canvas
 {
-Vector<Bille> billes;
+        public Vector<Bille> billes;
 
 
 
@@ -36,7 +36,7 @@ Vector<Bille> billes;
     
     for ( i = 0; i < this.billes.size(); ++i)
         this.billes.get(i).dessine(visiteur);
-    
+
     //System.out.println("billes dans le billard = " + billes);
     }
 

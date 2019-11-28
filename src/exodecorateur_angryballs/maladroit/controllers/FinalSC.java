@@ -3,23 +3,22 @@ package exodecorateur_angryballs.maladroit.controllers;
 import java.awt.event.MouseEvent;
 
 import exodecorateur_angryballs.maladroit.modele.balls.Bille;
-import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
 import mesmaths.geometrie.base.Vecteur;
 
 public class FinalSC extends StateController {
 
     public FinalSC(StateController suivant,
-                   CadreAngryBalls cadreAngryBalls) {
+                   StateManager cadreAngryBalls) {
         super(suivant, cadreAngryBalls);
     }
 
     public void mouseReleased(MouseEvent event) {
         if (this.suivant.bille != null) {
             Bille nextBille = this.suivant.bille.getWrappedBille();
-            this.cadreAngryBalls.getBilles().remove(this.suivant.bille);
-            this.cadreAngryBalls.getBilles().add(nextBille);
+            this.stateManager.billes.remove(this.suivant.bille);
+            this.stateManager.billes.add(nextBille);
             this.suivant.bille = null;
-            this.cadreAngryBalls.currentController = this.suivant;
+            this.stateManager.currentController = this.suivant;
             return;
         }
 

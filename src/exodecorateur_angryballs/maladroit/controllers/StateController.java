@@ -9,16 +9,16 @@ public abstract class StateController {
 	
 	public StateController suivant;
 
-	public CadreAngryBalls cadreAngryBalls;
+	public StateManager stateManager;
 	BillePilotee bille  = null;
 
     
     
-	public StateController(StateController suivant,  CadreAngryBalls cadreAngryBalls) {
+	public StateController(StateController suivant,  StateManager stateManager) {
 		super();
 		this.suivant = suivant;
 ;
-		this.cadreAngryBalls = cadreAngryBalls;
+		this.stateManager = stateManager;
 	}
 	public  void mousePressed(MouseEvent arg0){};
 	public  void mouseReleased(MouseEvent arg0){} ;

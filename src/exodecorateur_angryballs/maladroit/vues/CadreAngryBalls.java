@@ -21,7 +21,7 @@ import outilsvues.Outils;
  * <p>
  * ICI : IL N'Y A RIEN A CHANGER
  */
-public class CadreAngryBalls extends Frame implements VueBillard, MouseListener, MouseMotionListener {
+public class CadreAngryBalls extends Frame implements VueBillard {
     public TextField présentation;
     public Billard billard;
     public MyButton lancerBilles, arrêterBilles;
@@ -63,13 +63,7 @@ public class CadreAngryBalls extends Frame implements VueBillard, MouseListener,
         this.bas.add(this.arrêterBilles.button);
 
 
-        initial = new InitialSC(null,  this);
-        attrapee = new FinalSC(initial,  this);
-        initial.suivant = attrapee;
-        currentController = initial;
 
-        this.billard.addMouseListener(this);
-        this.billard.addMouseMotionListener(this);
     }
 
     public double largeurBillard() {
@@ -94,40 +88,7 @@ public class CadreAngryBalls extends Frame implements VueBillard, MouseListener,
     }
 
 
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
 
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-        currentController.mousePressed(mouseEvent);
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-        currentController.mouseReleased(mouseEvent);
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent mouseEvent) {
-        currentController.mouseDragged(mouseEvent);
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-
-    }
 
     public Vector<Bille> getBilles() {
        return billard.billes;

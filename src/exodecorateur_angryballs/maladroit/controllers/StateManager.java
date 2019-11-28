@@ -14,8 +14,20 @@ public class StateManager implements MouseMotionListener , MouseListener {
     public Vector<Bille> billes;
 
 
+    public StateManager(Vector<Bille> billes) {
+        this.billes = billes;
+        initial = new InitialSC(null,  this);
+        attrapee = new FinalSC(initial,  this);
+        initial.suivant = attrapee;
+        currentController = initial;
+    }
+
+
+
+
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
+
 
     }
 

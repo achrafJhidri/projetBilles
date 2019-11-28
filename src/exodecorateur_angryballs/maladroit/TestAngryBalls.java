@@ -4,6 +4,7 @@ package exodecorateur_angryballs.maladroit;
 import java.io.File;
 import java.util.Vector;
 
+import exodecorateur_angryballs.maladroit.controllers.StateManager;
 import exodecorateur_angryballs.maladroit.vues.MakeSound;
 import exodecorateur_angryballs.maladroit.modele.balls.Bille;
 import exodecorateur_angryballs.maladroit.modele.balls.BilleNormal;
@@ -14,6 +15,8 @@ import exodecorateur_angryballs.maladroit.modele.outilsModele.OutilsBille2;
 import mesmaths.geometrie.base.Vecteur;
 
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
+
+import javax.swing.plaf.nimbus.State;
 
 
 /**
@@ -55,6 +58,9 @@ CadreAngryBalls cadre = new CadreAngryBalls("Angry balls",
                                         "Animation de billes ayant des comportements différents. Situation idéale pour mettre en place le DP Decorator",
                                         billes);
 
+    StateManager stateManager = new StateManager(cadre.billard.billes);
+    cadre.billard.addMouseListener(stateManager);
+    cadre.billard.addMouseMotionListener(stateManager);
 cadre.montrer(); // on rend visible la vue
 
 //------------- remplissage de la liste avec 4 billes -------------------------------
