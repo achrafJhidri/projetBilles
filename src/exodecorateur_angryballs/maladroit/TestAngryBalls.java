@@ -35,13 +35,16 @@ public static void main(String[] args)
     String billebille = ici.getAbsolutePath()+File.separatorChar+"chocBilleBille.wav";
     String billeMur = ici.getAbsolutePath()+File.separatorChar+"chocBilleMur.wav";
 
-    MakeSound ms = new MakeSound(new File(billebille),new File(billeMur));
+    MakeSound ms = new MakeSound(new File(billebille));
+
+    MakeSound ms2 = new MakeSound(new File(billeMur));
+
 
     OutilsBille2 outilsBille2 = OutilsBille2.getInstance();
     outilsBille2.addObservateur(ms);
 
     Collisions2 collision2 = Collisions2.getInstance();
-    collision2.addObservateur(ms);
+    collision2.addObservateur(ms2);
 //------------------- création de la liste (pour l'instant vide) des billes -----------------------
 
 Vector<Bille> billes = new Vector<Bille>();
