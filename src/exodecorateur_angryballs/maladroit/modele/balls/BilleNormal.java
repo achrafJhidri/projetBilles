@@ -1,8 +1,10 @@
     package exodecorateur_angryballs.maladroit.modele.balls;
 
+import exodecorateur_angryballs.maladroit.modele.outilsModele.Collision;
 import exodecorateur_angryballs.maladroit.modele.outilsModele.Color;
-import exodecorateur_angryballs.maladroit.modele.outilsModele.OutilsBille2;
+import exodecorateur_angryballs.maladroit.modele.outilsModele.OutilsBille;
 import exodecorateur_angryballs.maladroit.vues.Dessinateur;
+import exodecorateur_angryballs.maladroit.vues.SoundCollisionBB;
 import mesmaths.cinematique.Cinematique;
 import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
@@ -90,7 +92,13 @@ public class BilleNormal implements Bille {
 
     @Override
     public boolean gestionCollisionBilleBille(Vector<Bille> billes) {
-        return OutilsBille2.getInstance().gestionCollisionBilleBille(this,billes);
+        double[] inout = new double[1];
+        if( OutilsBille.gestionCollisionBilleBille(this,billes,inout)){
+            Collision collision = new Collision((float)inout[0],position);
+            SoundCollisionBB.getInstance().notify(collision);
+            return true;
+        }
+        return false ;
     }
 
     @Override

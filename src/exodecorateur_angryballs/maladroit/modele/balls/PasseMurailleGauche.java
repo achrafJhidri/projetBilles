@@ -1,7 +1,7 @@
 package exodecorateur_angryballs.maladroit.modele.balls;
 
 
-import exodecorateur_angryballs.maladroit.modele.outilsModele.Collisions2;
+import exodecorateur_angryballs.maladroit.modele.outilsModele.Collisions;
 
 public class PasseMurailleGauche extends PasseMuraille{
 
@@ -12,7 +12,7 @@ public class PasseMurailleGauche extends PasseMuraille{
 	   @Override
 	    public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur) {
 
-		   Collisions2.collisionBilleContourPasseMurailleGauche(this.getPosition(), abscisseCoinHautGauche, largeur);
+		   Collisions.collisionBilleContourPasseMurailleGauche(this.getPosition(), abscisseCoinHautGauche, largeur);
 	        wrappedBille.collisionContour(abscisseCoinHautGauche, ordonneeCoinHautGauche,largeur, hauteur);
 
 	   }

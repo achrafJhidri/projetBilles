@@ -1,6 +1,6 @@
 package exodecorateur_angryballs.maladroit.modele.balls;
 
-import exodecorateur_angryballs.maladroit.modele.outilsModele.Collisions2;
+import exodecorateur_angryballs.maladroit.modele.outilsModele.Collisions;
 
 public class ArretWrapperDroit extends ArretWrapper{
 
@@ -10,7 +10,7 @@ public class ArretWrapperDroit extends ArretWrapper{
 	}
 	@Override
     public void collisionContour(double abscisseCoinHautGauche, double ordonneeCoinHautGauche, double largeur, double hauteur) {
-        Collisions2.collisionBilleContourAvecArretDroit(this.getPosition(),this.getRayon(),this.getVitesse(), ordonneeCoinHautGauche, largeur);
+        Collisions.collisionBilleContourAvecArretDroit(this.getPosition(),this.getRayon(),this.getVitesse(), ordonneeCoinHautGauche, largeur);
         wrappedBille.collisionContour(abscisseCoinHautGauche, ordonneeCoinHautGauche,largeur, hauteur);
     }
 }

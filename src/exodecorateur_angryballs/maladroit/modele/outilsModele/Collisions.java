@@ -7,19 +7,8 @@ import mesmaths.geometrie.base.Geop;
 import mesmaths.geometrie.base.Vecteur;
 
 
-public class Collisions2 extends Observable
+public class Collisions extends Observable
 {
-    private static Collisions2 instance;
-
-    private Collisions2(){
-    }
-
-    public static Collisions2 getInstance(){
-        if(instance == null){
-            instance = new Collisions2();
-        }
-        return instance;
-    }
 
     static double EPSILON = 1.0E-6;
 
@@ -259,8 +248,8 @@ public class Collisions2 extends Observable
      *
      *
      * */
-    public   boolean collisionBilleContourAvecRebond( final Vecteur position,  double rayon, Vecteur vitesse,
-                                                           double abscisseCoinHautGauche, double ordonnéeCoinHautGauche, double largeur, double hauteur)
+    public static  boolean collisionBilleContourAvecRebond( final Vecteur position,  double rayon, Vecteur vitesse,
+                                                           double abscisseCoinHautGauche, double ordonnéeCoinHautGauche, double largeur, double hauteur,double[] inout)
     {
         Vecteur min = new Vecteur(abscisseCoinHautGauche,ordonnéeCoinHautGauche);
         Vecteur diago = new Vecteur(largeur, hauteur);
@@ -274,15 +263,10 @@ public class Collisions2 extends Observable
         coins[2] = max;
         coins[3] = new Vecteur(min.x, max.y);
         coins[4] = coins[0];                    // pour refermer le contour !
-        double[] inout=new double[1];
         int i;
         for ( i = 1; i < coins.length; ++i)
             if (collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i],inout))
-                {
-                    Collision collision = new Collision((float)inout[0],position,COLLISIONTYPE.MUR);
-                    this.notify(collision);
                     return true;
-                }
 
         return false;
     }
@@ -370,23 +354,23 @@ public class Collisions2 extends Observable
                                                               double ordonneeCoinHautGauche, double hauteur)
     {
 
-        position.y = Collisions2.traverseBordGauche(position.y,ordonneeCoinHautGauche, hauteur);
+        position.y = Collisions.traverseBordGauche(position.y,ordonneeCoinHautGauche, hauteur);
     }
     public static void collisionBilleContourPasseMurailleGauche(Vecteur position,
                                                                 double abscisseCoinHautGauche, double largeur)
     {
-        position.x = Collisions2.traverseBordGauche(position.x,abscisseCoinHautGauche, largeur);
+        position.x = Collisions.traverseBordGauche(position.x,abscisseCoinHautGauche, largeur);
 
     }
     public static void collisionBilleContourPasseMurailleBas(Vecteur position,
                                                              double ordonneeCoinHautGauche, double hauteur)
     {
-        position.y = Collisions2.traverseBordDroit(position.y,ordonneeCoinHautGauche, hauteur);
+        position.y = Collisions.traverseBordDroit(position.y,ordonneeCoinHautGauche, hauteur);
     }
     public static void collisionBilleContourPasseMurailleDroit(Vecteur position,
                                                                double abscisseCoinHautGauche, double largeur)
     {
-        position.x = Collisions2.traverseBordDroit(position.x,abscisseCoinHautGauche, largeur);
+        position.x = Collisions.traverseBordDroit(position.x,abscisseCoinHautGauche, largeur);
     }
     /*
      * utile e la methode collisionBilleContourPasseMuraille
@@ -441,7 +425,7 @@ public class Collisions2 extends Observable
                                                            double abscisseCoinHautGauche, double largeur)
     {
 //vitesse.x = Collisions.arretSurBord(vitesse.x, position.x, rayon, abscisseCoinHautGauche, largeur);
-        double t[] = Collisions2.arretSurBordDroit(vitesse.x, position.x, rayon, abscisseCoinHautGauche, largeur);
+        double t[] = Collisions.arretSurBordDroit(vitesse.x, position.x, rayon, abscisseCoinHautGauche, largeur);
         vitesse.x = t[0];
         position.x = t[1];
     }
@@ -449,7 +433,7 @@ public class Collisions2 extends Observable
                                                             double abscisseCoinHautGauche, double largeur)
     {
 //vitesse.x = Collisions.arretSurBord(vitesse.x, position.x, rayon, abscisseCoinHautGauche, largeur);
-        double t[] = Collisions2.arretSurBordGauche(vitesse.x, position.x, rayon, abscisseCoinHautGauche, largeur);
+        double t[] = Collisions.arretSurBordGauche(vitesse.x, position.x, rayon, abscisseCoinHautGauche, largeur);
         vitesse.x = t[0];
         position.x = t[1];
     }
@@ -471,7 +455,7 @@ public class Collisions2 extends Observable
                                                           double ordonneeCoinHautGauche, double hauteur)
     {
 //vitesse.y = Collisions.arretSurBord(vitesse.y, position.y, rayon, ordonneeCoinHautGauche, hauteur);
-        double t[] = Collisions2.arretSurBordGauche(vitesse.y, position.y, rayon, ordonneeCoinHautGauche, hauteur);
+        double t[] = Collisions.arretSurBordGauche(vitesse.y, position.y, rayon, ordonneeCoinHautGauche, hauteur);
         vitesse.y = t[0];
         position.y = t[1];
     }
@@ -479,7 +463,7 @@ public class Collisions2 extends Observable
                                                          double ordonneeCoinHautGauche, double hauteur)
     {
 //vitesse.y = Collisions.arretSurBord(vitesse.y, position.y, rayon, ordonneeCoinHautGauche, hauteur);
-        double t[] = Collisions2.arretSurBordDroit(vitesse.y, position.y, rayon, ordonneeCoinHautGauche, hauteur);
+        double t[] = Collisions.arretSurBordDroit(vitesse.y, position.y, rayon, ordonneeCoinHautGauche, hauteur);
         vitesse.y = t[0];
         position.y = t[1];
     }
@@ -501,7 +485,7 @@ public class Collisions2 extends Observable
 
         int i;
         for ( i = 1; i < coins.length; i++)
-            if (Collisions2.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i]))
+            if (Collisions.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i]))
                 return true;
 
         return false;
@@ -522,7 +506,7 @@ public class Collisions2 extends Observable
 
         int i;
         for ( i = 1; i < coins.length; i++)
-            if (Collisions2.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i]))
+            if (Collisions.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i]))
                 return true;
 
         return false;
@@ -542,7 +526,7 @@ public class Collisions2 extends Observable
         coins[1] = new Vecteur(min.x, max.y);
         int i;
         for ( i = 1; i < coins.length; i++)
-            if (Collisions2.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i]))
+            if (Collisions.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i]))
 
 
                 return true;
@@ -564,7 +548,7 @@ public class Collisions2 extends Observable
         coins[1] = new Vecteur(max.x,min.y);
         int i;
         for ( i = 1; i < coins.length; i++)
-            if (Collisions2.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i]))
+            if (Collisions.collisionBilleSegmentAvecRebond(position, rayon, vitesse, coins[i-1], coins[i]))
                 return true;
 
         return false;
@@ -584,7 +568,7 @@ public class Collisions2 extends Observable
         if (x+rayon > xMax)
         {
             t[0] = 0;
-            t[1] = xMax-rayon-Collisions2.EPSILON;
+            t[1] = xMax-rayon- Collisions.EPSILON;
         }
 
 
@@ -605,7 +589,7 @@ public class Collisions2 extends Observable
         if (x-rayon < xMin)
         {
             t[0] = 0;
-            t[1] = xMin + Collisions2.EPSILON + rayon;
+            t[1] = xMin + Collisions.EPSILON + rayon;
         }
         else
         {

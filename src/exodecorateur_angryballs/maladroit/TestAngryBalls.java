@@ -5,18 +5,14 @@ import java.io.File;
 import java.util.Vector;
 
 import exodecorateur_angryballs.maladroit.controllers.StateManager;
+import exodecorateur_angryballs.maladroit.modele.balls.*;
 import exodecorateur_angryballs.maladroit.vues.MakeSound;
-import exodecorateur_angryballs.maladroit.modele.balls.Bille;
-import exodecorateur_angryballs.maladroit.modele.balls.BilleNormal;
-import exodecorateur_angryballs.maladroit.modele.balls.RebondWrapper;
-import exodecorateur_angryballs.maladroit.modele.outilsModele.Collisions2;
 import exodecorateur_angryballs.maladroit.modele.outilsModele.Color;
-import exodecorateur_angryballs.maladroit.modele.outilsModele.OutilsBille2;
+import exodecorateur_angryballs.maladroit.vues.SoundCollisionBB;
+import exodecorateur_angryballs.maladroit.vues.SoundCollisionContour;
 import mesmaths.geometrie.base.Vecteur;
 
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
-
-import javax.swing.plaf.nimbus.State;
 
 
 /**
@@ -43,11 +39,11 @@ public static void main(String[] args)
     MakeSound ms2 = new MakeSound(new File(billeMur));
 
 
-    OutilsBille2 outilsBille2 = OutilsBille2.getInstance();
-    outilsBille2.addObservateur(ms);
 
-    Collisions2 collision2 = Collisions2.getInstance();
-    collision2.addObservateur(ms2);
+    SoundCollisionContour scc = SoundCollisionContour.getInstance();
+    SoundCollisionBB sbb = SoundCollisionBB.getInstance();
+    scc.addObservateur(ms2);
+    sbb.addObservateur(ms);
 //------------------- création de la liste (pour l'instant vide) des billes -----------------------
 
 Vector<Bille> billes = new Vector<Bille>();
@@ -105,24 +101,24 @@ billes.add(new BilleMvtNewtonArret(p4, rayon, v4,  Color.black));
 
     Bille bille2 = new BilleNormal(p2,rayon,v2, Color.BLUE);
     bille2 = new RebondWrapper(bille2);
-
+    bille2 = new NewtonWrapper(bille2);
     billes.add(bille2);
 
 
     Bille bille3 = new BilleNormal(p3,rayon,v3,Color.DARK);
-    bille3 = new RebondWrapper(bille3);
-
+  //  bille3 = new RebondWrapper(bille3);
+    bille3 = new PasseMuraille(bille3);
     billes.add(bille3);
 
-//    Bille bille4 = new BilleNormal(p4,rayon,v4,Color.YELLOW);
-//    bille4 = new RebondWrapper(bille4);
-//    bille4 = new NewtonWrapper(bille4);
-//    billes.add(bille4);
-//
-//    Bille bille5 = new BilleNormal(p0,rayon,v0,Color.GREEN);
-//    bille5 = new RebondWrapper(bille5);
-//    bille5 = new NewtonWrapper(bille5);
-//    billes.add(bille5);
+    Bille bille4 = new BilleNormal(p4,rayon,v4,Color.YELLOW);
+    bille4 = new RebondWrapper(bille4);
+    bille4 = new PesanteurWrapper(bille4,new Vecteur(0,0.001));
+    billes.add(bille4);
+
+    Bille bille5 = new BilleNormal(p0,rayon,v0,Color.GREEN);
+    bille5 = new RebondWrapper(bille5);
+
+    billes.add(bille5);
 
 
 
