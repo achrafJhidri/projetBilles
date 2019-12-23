@@ -2,7 +2,7 @@ package exodecorateur_angryballs.maladroit;
 
 import java.util.Vector;
 
-import exodecorateur_angryballs.maladroit.modele.*;
+import exodecorateur_angryballs.maladroit.modele.balls.Bille;
 import exodecorateur_angryballs.maladroit.vues.VueBillard;
 
 /**
@@ -15,7 +15,7 @@ public class AnimationBilles  implements Runnable
 {
 
 
-Vector<Bille> billes;   // la liste de toutes les billes en mouvement 
+Vector<Bille> billes;   // la liste de toutes les billes en mouvement
 VueBillard vueBillard;    // la vue responsable du dessin des billes
 private Thread thread;    // pour lancer et arrêter les billes
 

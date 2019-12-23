@@ -1,12 +1,13 @@
-package exodecorateur_angryballs.maladroit.modele;
+package exodecorateur_angryballs.maladroit.modele.balls;
 
+import exodecorateur_angryballs.maladroit.modele.outilsModele.Color;
+import exodecorateur_angryballs.maladroit.vues.Dessinateur;
 import mesmaths.geometrie.base.Vecteur;
 
-import java.awt.*;
+
 import java.util.Vector;
 
 public interface Bille {
-    static final double EPSILON = 1.0E-6;
     Vecteur getPosition();
     double getRayon();
     Vecteur getAcceleration();
@@ -19,8 +20,10 @@ public interface Bille {
     void gestionAccélération(Vector<Bille> billes);
     boolean gestionCollisionBilleBille(Vector<Bille> billes);
     void collisionContour(double abscisseCoinHautGauche,double ordonnéeCoinHautGauche,double largeur,double hauteur);
-    void dessine(Graphics g);
+    void dessine(Dessinateur g);
     Bille getWrappedBille();
     @Override
     String toString();
+
+    Color getCouleur();
 }

@@ -1,9 +1,15 @@
 package exodecorateur_angryballs.maladroit;
 
-import java.awt.Color;
+
+import java.io.File;
 import java.util.Vector;
 
-import exodecorateur_angryballs.maladroit.modele.*;
+import exodecorateur_angryballs.maladroit.controllers.StateManager;
+import exodecorateur_angryballs.maladroit.modele.balls.*;
+import exodecorateur_angryballs.maladroit.vues.MakeSound;
+import exodecorateur_angryballs.maladroit.modele.outilsModele.Color;
+import exodecorateur_angryballs.maladroit.vues.SoundCollisionBB;
+import exodecorateur_angryballs.maladroit.vues.SoundCollisionContour;
 import mesmaths.geometrie.base.Vecteur;
 
 import exodecorateur_angryballs.maladroit.vues.CadreAngryBalls;
@@ -22,6 +28,22 @@ public class TestAngryBalls
  */
 public static void main(String[] args)
 {
+
+    File racine = new File("");
+    File ici = new File(racine.getAbsoluteFile(),File.separatorChar+"assets");
+    String billebille = ici.getAbsolutePath()+File.separatorChar+"chocBilleBille.wav";
+    String billeMur = ici.getAbsolutePath()+File.separatorChar+"chocBilleMur.wav";
+
+    MakeSound ms = new MakeSound(new File(billebille));
+
+    MakeSound ms2 = new MakeSound(new File(billeMur));
+
+
+
+    SoundCollisionContour scc = SoundCollisionContour.getInstance();
+    SoundCollisionBB sbb = SoundCollisionBB.getInstance();
+    scc.addObservateur(ms2);
+    sbb.addObservateur(ms);
 //------------------- création de la liste (pour l'instant vide) des billes -----------------------
 
 Vector<Bille> billes = new Vector<Bille>();
@@ -32,6 +54,9 @@ CadreAngryBalls cadre = new CadreAngryBalls("Angry balls",
                                         "Animation de billes ayant des comportements différents. Situation idéale pour mettre en place le DP Decorator",
                                         billes);
 
+    StateManager stateManager = new StateManager(cadre.billard.billes);
+    cadre.billard.addMouseListener(stateManager);
+    cadre.billard.addMouseMotionListener(stateManager);
 cadre.montrer(); // on rend visible la vue
 
 //------------- remplissage de la liste avec 4 billes -------------------------------
@@ -40,7 +65,8 @@ cadre.montrer(); // on rend visible la vue
 
 double xMax, yMax;
 double vMax = 0.1;
-xMax = cadre.largeurBillard();      // abscisse maximal
+xMax = cadre.largeurBillard();
+    System.out.println(xMax);// abscisse maximal
 yMax = cadre.hauteurBillard();      // ordonnée maximale
 
 double rayon = 0.05*Math.min(xMax, yMax); // rayon des billes : ici toutes les billes ont le même rayon, mais ce n'est pas obligatoire
@@ -71,35 +97,32 @@ billes.add(new              BilleMvtNewtonFrottementRebond(p2, rayon, v2, Color.
 billes.add(new              BilleMvtRUPasseMurailles(p3, rayon, v3, Color.cyan));
 billes.add(new BilleMvtNewtonArret(p4, rayon, v4,  Color.black));
 */
-Bille bille1 = new BilleNormal(p1,rayon,v1,Color.YELLOW);
-bille1 = new RebondWrapper(bille1);
-//bille1 = new PesanteurWrapper(bille1,new Vecteur(0,0.001));
-bille1 = new FrottementWrapper(bille1);
-billes.add(bille1);
 
-//Bille bille2 = new BilleNormal(p2,rayon,v2,Color.RED);
-////bille2 = new RUWrapper(bille2);
-//bille2 = new RebondWrapper(bille2);
-//billes.add(bille2);
 
-/*Bille bille3 = new BilleNormal(p3,rayon,v3,Color.green);
-bille3 = new NewtonWrapper(bille3);
-bille3 = new FrottementWrapper(bille3);
-bille3 = new RebondWrapper(bille3);
-billes.add(bille3);
+    Bille bille2 = new BilleNormal(p2,rayon,v2, Color.BLUE);
+    bille2 = new RebondWrapper(bille2);
+    bille2 = new NewtonWrapper(bille2);
+    billes.add(bille2);
 
-Bille bille4 = new BilleNormal(p4,rayon,v4,Color.cyan);
-bille4 = new RUWrapper(bille4);
-bille4 = new PasseMuraille(bille4);
-billes.add(bille4);
 
-Bille bille5 = new BilleNormal(p0,rayon,v0,Color.BLACK);
-bille5 = new NewtonWrapper(bille5);
-bille5 = new ArretWrapper(bille5);
-billes.add(bille5);*/
+    Bille bille3 = new BilleNormal(p3,rayon,v3,Color.DARK);
+  //  bille3 = new RebondWrapper(bille3);
+    bille3 = new PasseMuraille(bille3);
+    billes.add(bille3);
+
+    Bille bille4 = new BilleNormal(p4,rayon,v4,Color.YELLOW);
+    bille4 = new RebondWrapper(bille4);
+    bille4 = new PesanteurWrapper(bille4,new Vecteur(0,0.001));
+    billes.add(bille4);
+
+    Bille bille5 = new BilleNormal(p0,rayon,v0,Color.GREEN);
+    bille5 = new RebondWrapper(bille5);
+
+    billes.add(bille5);
 
 
 
+ /**/
 //---------------------- ici finit la partie à changer -------------------------------------------------------------
 
 
@@ -111,15 +134,15 @@ System.out.println("billes = " + billes);
 AnimationBilles animationBilles = new AnimationBilles(billes, cadre);
 
 //----------------------- mise en place des écouteurs de boutons qui permettent de contrôler (un peu...) l'application -----------------
-
-EcouteurBoutonLancer écouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
-EcouteurBoutonArreter écouteurBoutonArrêter = new EcouteurBoutonArreter(animationBilles); 
+    MyAnimation monAnimation = new MyAnimation(animationBilles);
+//EcouteurBoutonLancer écouteurBoutonLancer = new EcouteurBoutonLancer(animationBilles);
+//EcouteurBoutonArreter écouteurBoutonArrêter = new EcouteurBoutonArreter(animationBilles);
 
 //------------------------- activation des écouteurs des boutons et ça tourne tout seul ------------------------------
 
 
-cadre.lancerBilles.addActionListener(écouteurBoutonLancer);             // maladroit : à changer
-cadre.arrêterBilles.addActionListener(écouteurBoutonArrêter);           // maladroit : à changer
+cadre.lancerBilles.addObservateur(monAnimation);             // maladroit : à changer
+cadre.arrêterBilles.addObservateur(monAnimation);           // maladroit : à changer
 
 
 

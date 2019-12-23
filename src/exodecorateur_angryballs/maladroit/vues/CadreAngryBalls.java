@@ -8,9 +8,10 @@ import java.util.Vector;
 
 
 import exodecorateur_angryballs.maladroit.controllers.FinalSC;
+import exodecorateur_angryballs.maladroit.Interupteur;
 import exodecorateur_angryballs.maladroit.controllers.StateController;
 import exodecorateur_angryballs.maladroit.controllers.InitialSC;
-import exodecorateur_angryballs.maladroit.modele.Bille;
+import exodecorateur_angryballs.maladroit.modele.balls.Bille;
 import outilsvues.EcouteurTerminaison;
 
 import outilsvues.Outils;
@@ -20,10 +21,10 @@ import outilsvues.Outils;
  * <p>
  * ICI : IL N'Y A RIEN A CHANGER
  */
-public class CadreAngryBalls extends Frame implements VueBillard, MouseListener, MouseMotionListener {
+public class CadreAngryBalls extends Frame implements VueBillard {
     public TextField présentation;
     public Billard billard;
-    public Button lancerBilles, arrêterBilles;
+    public MyButton lancerBilles, arrêterBilles;
     public Panel haut, centre, bas;
 
     public StateController currentController;
@@ -56,19 +57,13 @@ public class CadreAngryBalls extends Frame implements VueBillard, MouseListener,
         this.billard = new Billard(billes);
         this.add(this.billard);
 
-        this.lancerBilles = new Button("lancer les billes");
-        this.bas.add(this.lancerBilles);
-        this.arrêterBilles = new Button("arrêter les billes");
-        this.bas.add(this.arrêterBilles);
+        this.lancerBilles = new MyButton("lancer les billes", Interupteur.LANCER);
+        this.bas.add(this.lancerBilles.button);
+        this.arrêterBilles = new MyButton("arrêter les billes",Interupteur.ARRETER);
+        this.bas.add(this.arrêterBilles.button);
 
 
-        initial = new InitialSC(null, null, this);
-        attrapee = new FinalSC(initial, null, this);
-        initial.suivant = attrapee;
-        currentController = initial;
 
-        this.billard.addMouseListener(this);
-        this.billard.addMouseMotionListener(this);
     }
 
     public double largeurBillard() {
@@ -93,40 +88,7 @@ public class CadreAngryBalls extends Frame implements VueBillard, MouseListener,
     }
 
 
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
 
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-        currentController.mousePressed(mouseEvent);
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-        currentController.mouseReleased(mouseEvent);
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent mouseEvent) {
-        currentController.mouseDragged(mouseEvent);
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-
-    }
 
     public Vector<Bille> getBilles() {
        return billard.billes;
