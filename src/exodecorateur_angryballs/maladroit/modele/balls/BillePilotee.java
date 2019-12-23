@@ -18,6 +18,7 @@ public class BillePilotee extends BilleWrapper {
     @Override
     public void gestionAccélération(Vector<Bille> billes) {
         super.gestionAccélération(billes);
+        force.multiplie(1/masse());
         setAcceleration(force);
 
 

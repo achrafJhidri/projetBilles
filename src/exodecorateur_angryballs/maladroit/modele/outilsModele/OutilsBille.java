@@ -176,7 +176,7 @@ public class OutilsBille extends Observable
 
         if (a <= 0) return false;       // les billes séloignent l'une de l'autre, la collision a donc déjà été traitée
 
-        inout[0] = (float)a ;
+        inout[0] = (float)a ; // liaison model vue ! float
 // à présent a > 0. a représente l'intensité du choc entre les 2 billes !!!!
 
 // calculons les nouveaux vecteurs vitesse immédiatement après le choc

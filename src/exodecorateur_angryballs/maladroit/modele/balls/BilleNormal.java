@@ -95,7 +95,7 @@ public class BilleNormal implements Bille {
         double[] inout = new double[1];
         if( OutilsBille.gestionCollisionBilleBille(this,billes,inout)){
             Collision collision = new Collision((float)inout[0],position);
-            SoundCollisionBB.getInstance().notify(collision);
+                SoundCollisionBB.getInstance().notify(collision);
             return true;
         }
         return false ;
